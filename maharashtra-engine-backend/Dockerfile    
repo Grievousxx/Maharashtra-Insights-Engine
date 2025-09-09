@@ -1,0 +1,27 @@
+# Use the official Hugging Face base image that includes Python, PyTorch, and CUDA for GPU support
+FROM huggingface/transformers-pytorch-gpu:latest
+
+# Set the working directory inside the container to /app
+WORKDIR /app
+
+# --- THIS IS THE FINAL FIX ---
+# 1. Create a directory named 'cache' inside /app.
+# 2. Change the ownership of that new directory to the default user (user ID 1000).
+#    This gives our program permission to write files into it.
+RUN mkdir /app/cache && chown -R 1000:1000 /app/cache
+
+# Tell the Hugging Face libraries to use this new, safe, and writable directory
+ENV HF_HOME="/app/cache"
+ENV TRANSFORMERS_CACHE="/app/cache"
+
+# Copy all the application files into the container
+COPY . .
+
+# Install all the Python libraries listed in your requirements.txt file
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Tell the container to "listen" for incoming web traffic on port 7860
+EXPOSE 7860
+
+# The final command to start your FastAPI web server, also on port 7860
+CMD ["uvicorn", "backend:app", "--host", "0.0.0.0", "--port", "7860"]

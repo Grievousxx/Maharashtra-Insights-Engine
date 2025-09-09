@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+pydantic
+torch==2.1.2
+transformers==4.38.2
+peft==0.9.0
+accelerate==0.28.0
+bitsandbytes==0.42.0
+sentence-transformers==2.7.0
+faiss-cpu==1.8.0
+huggingface-hub
