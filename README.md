@@ -1,40 +1,86 @@
-# Maharashtra Insights Engine
+# 🚀 Maharashtra Insights Engine
+
+![Made with React](https://img.shields.io/badge/Frontend-React-blue?logo=react)
+![Backend FastAPI](https://img.shields.io/badge/Backend-FastAPI-teal?logo=fastapi)
+![Model HuggingFace](https://img.shields.io/badge/Model-HuggingFace-yellow?logo=huggingface)
+![Dockerized](https://img.shields.io/badge/Deployment-Docker-blue?logo=docker)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen)
 
 ## A Full-Stack, End-to-End RAG System for Maharashtra Policy & News
 
 **Author:** Anshraj Bhargava (Grievousxx)  
-**Live Demo:** [**maharashtra-insights-engine.vercel.app**](https://maharashtra-insights-engine.vercel.app/)  
-**Live Backend API:** [Hugging Face Space](https://grievousxx-maharashtra-insights-engine.hf.space)  
+**Live Demo:** [maharashtra-insights-engine.vercel.app](https://maharashtra-insights-engine.vercel.app/)  
+**Backend API:** [Hugging Face Space](https://grievousxx-maharashtra-insights-engine.hf.space)  
 **Fine-Tuned Model:** [Hugging Face Hub](https://huggingface.co/Grievousxx/maharashtra-insights-engine-v1)
 
 ---
 
-## Project Overview
+## 📖 Project Overview
 
-The Maharashtra Insights Engine is a sophisticated, full-stack AI application designed to provide accurate, source-backed answers to complex questions about government policies and current events in Maharashtra.
+The **Maharashtra Insights Engine** is a **full-stack AI application** that delivers **accurate, source-grounded answers** to questions about Maharashtra’s **government policies and current events**.  
 
-This project moves beyond a simple chatbot by implementing a **Retrieval-Augmented Generation (RAG)** pipeline. This advanced architecture addresses key LLM limitations like hallucination and knowledge cutoffs by grounding the model's responses in a curated set of real-world documents, ensuring factual accuracy and user trust.
-
-## Key Features
-
-- **Fine-Tuned Intelligence:** Utilizes a **Microsoft Phi-2** model, fine-tuned with **LoRA (Low-Rank Adaptation)** on a custom dataset of Maharashtra policy documents and news articles to specialize its knowledge.
-- **Fact-Based Answers:** The RAG system uses a **FAISS vector index** and a `SentenceTransformer` model to perform high-speed semantic search, retrieving relevant context before generating an answer.
-- **Full-Stack Application:** Features a beautiful, interactive **React frontend** that communicates with a live, **GPU-powered FastAPI backend**.
-- **End-to-End MLOps:** The entire system is a showcase of a modern MLOps workflow, from a Kaggle development environment to a containerized **Docker deployment** on Hugging Face Spaces.
-
-## Architecture
-
-This project consists of three main, decoupled components that work in harmony:
-
-1.  **The Fine-Tuned Model:** The core generative "brain." The fine-tuned adapter is permanently versioned and stored on the [Hugging Face Hub](https://huggingface.co/Grievousxx/maharashtra-insights-engine-v1).
-2.  **The Backend API:** A Python application built with FastAPI that handles user requests, runs the RAG pipeline, and serves the model. This is containerized with Docker and deployed on a T4 GPU on [Hugging Face Spaces](https://grievousxx-maharashtra-insights-engine.hf.space).
-3.  **The Frontend UI:** A modern, responsive user interface built with React and deployed on [Vercel](https://maharashtra-insights-engine.vercel.app/), allowing users to interact with the engine from any device.
-
-## Repository Structure
-
-This repository contains the source code for the entire application, organized as follows:
-
--   **/maharashtra-insight-flow-main:** The React frontend application.
--   **/maharashtra-engine-backend:** The Python FastAPI backend, including the `Dockerfile` for deployment.
+Unlike a simple chatbot, this system implements a **Retrieval-Augmented Generation (RAG)** pipeline. By combining retrieval and generation, it overcomes typical LLM limitations like **hallucination** and **knowledge cutoffs**, ensuring answers are **factual, trustworthy, and explainable**.  
 
 ---
+
+## ✨ Key Features
+
+- 🔹 **Fine-Tuned Intelligence** – Built on **Microsoft Phi-2**, adapted with **LoRA** on a curated dataset of Maharashtra policy and news.  
+- 🔹 **Fact-Based Answers** – Uses **FAISS vector search** + **SentenceTransformer** to retrieve documents before generating answers.  
+- 🔹 **Full-Stack Application** – Modern **React frontend** + **FastAPI backend** running on GPU.  
+- 🔹 **End-to-End MLOps** – From **Kaggle prototyping → Docker containerization → Cloud deployment** on Hugging Face Spaces & Vercel.  
+
+---
+
+## 🏗️ Architecture
+
+This project has **three main components**:
+
+1. **Fine-Tuned Model**  
+   - Base: Microsoft Phi-2  
+   - Adapted with LoRA for Maharashtra-specific knowledge  
+   - Permanently stored on [Hugging Face Hub](https://huggingface.co/Grievousxx/maharashtra-insights-engine-v1)
+
+2. **Backend API (FastAPI)**  
+   - Orchestrates the **RAG pipeline** (query parsing → vector search → model inference)  
+   - Containerized with **Docker**, deployed on a **T4 GPU** in Hugging Face Spaces  
+
+3. **Frontend UI (React)**  
+   - Modern, responsive interface  
+   - Deployed on [Vercel](https://maharashtra-insights-engine.vercel.app/)  
+   - Connects seamlessly to the backend API  
+
+---
+
+## 📊 Architecture Diagram
+
+```mermaid
+flowchart LR
+    User([User]) -->|Query| Frontend[React UI]
+    Frontend --> Backend[FastAPI Backend]
+    Backend -->|Vector Search| FAISS[(FAISS + SentenceTransformer)]
+    FAISS --> Backend
+    Backend --> Model[Phi-2 Fine-Tuned Model]
+    Model --> Backend
+    Backend -->|Response| Frontend
+    Frontend -->|Answer| User
+
+Repository Structure
+/maharashtra-insight-flow-main   → React frontend (TypeScript, CSS)
+/maharashtra-engine-backend      → FastAPI backend (Python) + Dockerfile
+README.md                        → Documentation
+
+⚙️ Getting Started
+
+1. Clone Repository
+git clone https://github.com/Grievousxx/Maharashtra-Insights-Engine.git
+
+2. Backend Setup
+cd maharashtra-engine-backend
+docker build -t mah-eng-backend .
+docker run --gpus all -p 8000:8000 mah-eng-backend
+
+3. Frontend Setup
+cd maharashtra-insight-flow-main
+npm install
+npm start
