@@ -50,4 +50,29 @@ Unlike a standard chatbot, it uses a **Retrieval-Augmented Generation (RAG)** pi
 ---
 
 ## 📂 Repository Structure
+1./maharashtra-insight-flow-main → React frontend (TypeScript, CSS)
+2./maharashtra-engine-backend → FastAPI backend (Python) + Dockerfile
+
+##  Documentation
+
+---
+
+## ⚙️ Getting Started
+
+### 1. Clone Repository
+```bash
+git clone https://github.com/Grievousxx/Maharashtra-Insights-Engine.git
+
+### 2.Backend Setup
+```bash
+cd maharashtra-engine-backend
+docker build -t mah-eng-backend .
+docker run --gpus all -p 8000:8000 mah-eng-backend
+
+### 3.Frontend Setup
+```bash
+cd maharashtra-insight-flow-main
+npm install
+npm start
+
 
