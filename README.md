@@ -51,6 +51,7 @@ Unlike a standard chatbot, it uses a **Retrieval-Augmented Generation (RAG)** pi
 
 ## 📂 Repository Structure
 1./maharashtra-insight-flow-main → React frontend (TypeScript, CSS)
+
 2./maharashtra-engine-backend → FastAPI backend (Python) + Dockerfile
 
 ##  Documentation
